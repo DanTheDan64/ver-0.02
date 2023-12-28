@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgg06vifjtsnr"]
+
+[ext_resource type="Script" path="res://character/CharacterBody3D.gd" id="1_5tx6x"]
+[ext_resource type="Script" path="res://character/Camera3D.gd" id="2_01ns8"]
+[ext_resource type="Texture2D" uid="uid://cxy5a1fi6jcjo" path="res://assets/icon.svg" id="3_efokr"]
+[ext_resource type="Script" path="res://character/Panel.gd" id="4_lm5gk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y8eel"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5mmpf"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+script = ExtResource("1_5tx6x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_y8eel")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_5mmpf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.809772, 0)
+script = ExtResource("2_01ns8")
+
+[node name="gun" type="Marker3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.395)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_efokr")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 210.0
+offset_bottom = 130.0
+script = ExtResource("4_lm5gk")
+
+[node name="required_food" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 60.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="food_collected" type="Label" parent="Panel"]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 200.0
+offset_bottom = 120.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
